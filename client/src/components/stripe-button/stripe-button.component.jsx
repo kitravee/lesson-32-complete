@@ -4,38 +4,38 @@ import axios from 'axios';
 
 const StripeCheckoutButton = ({ price }) => {
   const priceForStripe = price * 100;
-  const publishableKey = 'pk_test_b7a3hFL5nC3qlBCZ6bQACpez00gyMMP52H';
+  const publishableKey = 'pk_test_FWDVi4kt5JKpiozYH3Y9JXxJ00fEp2NYoS';
 
-  const onToken = token => {
+  const onToken = (token) => {
     axios({
       url: 'payment',
       method: 'post',
       data: {
         amount: priceForStripe,
-        token: token
-      }
+        token: token,
+      },
     })
-      .then(response => {
+      .then((response) => {
         alert('succesful payment');
       })
-      .catch(error => {
+      .catch((error) => {
         console.log('Payment Error: ', JSON.parse(error));
         alert(
-          'There was an issue with your payment! Please make sure you use the provided credit card.'
+          'There was an issue with your payment! Please make sure you use the provided credit card.',
         );
       });
   };
 
   return (
     <StripeCheckout
-      label='Pay Now'
-      name='CRWN Clothing Ltd.'
+      label="Pay Now"
+      name="CRWN Clothing Ltd."
       billingAddress
       shippingAddress
-      image='https://svgshare.com/i/CUz.svg'
+      image="https://svgshare.com/i/CUz.svg"
       description={`Your total is $${price}`}
       amount={priceForStripe}
-      panelLabel='Pay Now'
+      panelLabel="Pay Now"
       token={onToken}
       stripeKey={publishableKey}
     />
