@@ -3,6 +3,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const path = require('path');
 const compression = require('compression');
+const enforce = require('express-sslify');
 
 if (process.env.NODE_ENV !== 'production') require('dotenv').config();
 
@@ -18,6 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
 if (process.env.NODE_ENV === 'production') {
+  //IF HTTP REQUEST WE WILL RESPONSE HTTPS (FOR HEROKU)
   app.use(enforce.HTTPS({ trustProtoHeader: true }));
   app.use(express.static(path.join(__dirname, 'client/build')));
 
@@ -29,6 +31,11 @@ if (process.env.NODE_ENV === 'production') {
 app.listen(port, (error) => {
   if (error) throw error;
   console.log('Server running on port ' + port);
+});
+
+app.get('/service-worker.js', (req, res) => {
+  console.log(__dirname);
+  res.sendFile(path.resolve(__dirname, '..', 'build', 'service-worker.js'));
 });
 
 app.post('/payment', (req, res) => {
