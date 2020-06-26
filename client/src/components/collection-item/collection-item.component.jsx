@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
+// import { createStructuredSelector } from 'reselect';
 
-import { addItem } from '../../redux/cart/cart.actions';
+import { toggleModal } from '../../redux/shop/shop.actions';
 
 import {
   CollectionItemContainer,
@@ -9,10 +10,10 @@ import {
   AddButton,
   BackgroundImage,
   NameContainer,
-  PriceContainer
+  PriceContainer,
 } from './collection-item.styles';
 
-const CollectionItem = ({ item, addItem }) => {
+const CollectionItem = ({ item, toggleModal }) => {
   const { name, price, imageUrl } = item;
 
   return (
@@ -22,18 +23,15 @@ const CollectionItem = ({ item, addItem }) => {
         <NameContainer>{name}</NameContainer>
         <PriceContainer>{price}</PriceContainer>
       </CollectionFooterContainer>
-      <AddButton onClick={() => addItem(item)} inverted>
-        Add to cart
+      <AddButton onClick={() => toggleModal(item)} inverted>
+        Quick Add
       </AddButton>
     </CollectionItemContainer>
   );
 };
 
-const mapDispatchToProps = dispatch => ({
-  addItem: item => dispatch(addItem(item))
+const mapDispatchToProps = (dispatch) => ({
+  toggleModal: (item) => dispatch(toggleModal(item)),
 });
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(CollectionItem);
+export default connect(null, mapDispatchToProps)(CollectionItem);

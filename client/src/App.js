@@ -16,6 +16,12 @@ import { GlobalStyle } from './global.styles';
 import { selectCurrentUser } from './redux/user/user.selectors';
 import { checkUserSession } from './redux/user/user.actions';
 
+import { selectModalOpen, selectModalItem } from './redux/shop/shop.selectors';
+import { toggleModal } from './redux/shop/shop.actions';
+
+import Modal from './components/modal/modal';
+import QuickInfo from './components/quick-info/quick-info';
+
 const HomePage = lazy(() => import('./pages/homepage/homepage.component'));
 const ShopPage = lazy(() => import('./pages/shop/shop.component'));
 const SignInAndSignUpPage = lazy(() =>
@@ -23,7 +29,13 @@ const SignInAndSignUpPage = lazy(() =>
 );
 const CheckoutPage = lazy(() => import('./pages/checkout/checkout.component'));
 
-const App = ({ checkUserSession, currentUser }) => {
+const App = ({
+  checkUserSession,
+  currentUser,
+  selectModalOpen,
+  selectModalItem,
+  toggleModal,
+}) => {
   useEffect(() => {
     checkUserSession();
   }, [checkUserSession]);
@@ -34,9 +46,18 @@ const App = ({ checkUserSession, currentUser }) => {
       <Header />
       <Switch>
         <ErrorBoundary>
+          <Modal>
+            {selectModalOpen && (
+              <QuickInfo
+                isModalOpen={selectModalOpen}
+                toggleModal={toggleModal}
+                item={selectModalItem}
+              />
+            )}
+          </Modal>
+
           <Suspense fallback={<Spinner />}>
             <Route exact path='/' component={HomePage} />
-
             <Route path='/shop' component={ShopPage} />
             <Route exact path='/checkout' component={CheckoutPage} />
             <Route
@@ -55,10 +76,13 @@ const App = ({ checkUserSession, currentUser }) => {
 
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
+  selectModalOpen: selectModalOpen,
+  selectModalItem: selectModalItem,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   checkUserSession: () => dispatch(checkUserSession()),
+  toggleModal: (item) => dispatch(toggleModal(item)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
