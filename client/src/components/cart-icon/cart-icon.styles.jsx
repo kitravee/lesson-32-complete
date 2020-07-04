@@ -5,11 +5,15 @@ import { ReactComponent as ShoppingIconSVG } from '../../assets/shopping-bag.svg
 export const CartContainer = styled.div`
   width: 45px;
   height: 45px;
-  position: relative;
+  position: fixed;
+  border-radius: 50%;
+  border: 1px solid black;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  background-color: #fff;
+  z-index: 3000;
 `;
 
 export const ShoppingIcon = styled(ShoppingIconSVG)`

@@ -1,0 +1,21 @@
+#content-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.column {
+  flex: 1;
+  padding: 10px;
+}
+
+.margin-bottom-small {
+  margin-bottom: 1.5rem !important;
+}
+
+.item-info {
+  background-color: rgb(255, 255, 255, 0.75);
+  padding: 0 10px;
+  padding-bottom: 10px;
+}

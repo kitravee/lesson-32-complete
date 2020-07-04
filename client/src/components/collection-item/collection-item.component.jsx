@@ -1,37 +1,58 @@
 import React from 'react';
 import { connect } from 'react-redux';
 // import { createStructuredSelector } from 'reselect';
+import { setCurrentRoute } from '../../redux/shop/shop.actions';
 
 import { toggleModal } from '../../redux/shop/shop.actions';
 
 import {
   CollectionItemContainer,
   CollectionFooterContainer,
-  AddButton,
+  QuickButton,
   BackgroundImage,
   NameContainer,
   PriceContainer,
 } from './collection-item.styles';
 
-const CollectionItem = ({ item, toggleModal }) => {
+const CollectionItem = ({
+  item,
+  title,
+  toggleModal,
+  setCurrentRoute,
+  history,
+  match,
+}) => {
   const { name, price, imageUrl } = item;
+  const route = title
+    ? `${match.url}/${title}/${item.id}`
+    : `${match.url}/${item.id}`;
 
+  const handleClick = () => {
+    toggleModal(item);
+    console.log(route);
+    setCurrentRoute(route);
+  };
   return (
     <CollectionItemContainer>
-      <BackgroundImage className='image' imageUrl={imageUrl} />
+      <BackgroundImage
+        className='image'
+        imageUrl={imageUrl}
+        onClick={() => history.push(route)}
+      />
       <CollectionFooterContainer>
         <NameContainer>{name}</NameContainer>
         <PriceContainer>{price}</PriceContainer>
       </CollectionFooterContainer>
-      <AddButton onClick={() => toggleModal(item)} inverted>
+      <QuickButton onClick={handleClick} inverted>
         Quick Add
-      </AddButton>
+      </QuickButton>
     </CollectionItemContainer>
   );
 };
 
 const mapDispatchToProps = (dispatch) => ({
   toggleModal: (item) => dispatch(toggleModal(item)),
+  setCurrentRoute: (currentRoute) => dispatch(setCurrentRoute(currentRoute)),
 });
 
 export default connect(null, mapDispatchToProps)(CollectionItem);

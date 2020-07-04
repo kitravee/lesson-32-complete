@@ -38,3 +38,8 @@ export const toggleModal = (item) => ({
   type: ShopActionTypes.TOGGLE_MODAL,
   payload: item,
 });
+
+export const setCurrentRoute = (currentRoute) => ({
+  type: ShopActionTypes.SET_QUICK_ROUTE,
+  payload: currentRoute,
+});

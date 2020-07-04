@@ -35,7 +35,7 @@ export const CollectionItemContainer = styled.div`
   }
 `;
 
-export const AddButton = styled(CustomButton)`
+export const QuickButton = styled(CustomButton)`
   width: 80%;
   opacity: 0.7;
   position: absolute;

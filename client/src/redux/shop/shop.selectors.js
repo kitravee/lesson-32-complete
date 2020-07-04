@@ -18,6 +18,15 @@ export const selectCollection = (collectionUrlParam) =>
     collections ? collections[collectionUrlParam] : null,
   );
 
+export const selectItem = (collectionUrlParam, itemId) =>
+  createSelector([selectCollection(collectionUrlParam)], (collections) =>
+    collections
+      ? Object.keys(collections.items)
+          .filter((key) => Number(collections.items[key].id) === Number(itemId))
+          .map((filter) => collections.items[filter])[0]
+      : null,
+  );
+
 export const selectIsCollectionFetching = createSelector(
   [selectShop],
   (shop) => shop.isFetching,
@@ -36,4 +45,9 @@ export const selectModalOpen = createSelector(
 export const selectModalItem = createSelector(
   [selectShop],
   (shop) => shop.ModalItem,
+);
+
+export const selectCurrentRoute = createSelector(
+  [selectShop],
+  (shop) => shop.currentRoute,
 );

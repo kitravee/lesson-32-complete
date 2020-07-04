@@ -6,6 +6,7 @@ const INITIAL_STATE = {
   errorMessage: undefined,
   isModalOpen: false,
   ModalItem: null,
+  currentRoute: null,
 };
 
 const shopReducer = (state = INITIAL_STATE, action) => {
@@ -32,6 +33,12 @@ const shopReducer = (state = INITIAL_STATE, action) => {
         ...state,
         isModalOpen: !state.isModalOpen,
         ModalItem: action.payload,
+      };
+
+    case ShopActionTypes.SET_QUICK_ROUTE:
+      return {
+        ...state,
+        currentRoute: action.payload,
       };
     default:
       return state;

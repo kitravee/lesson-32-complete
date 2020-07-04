@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 
 import { connect } from 'react-redux';
 import { addItem } from '../../redux/cart/cart.actions';
+import { withRouter } from 'react-router-dom';
+import { selectCurrentRoute } from '../../redux/shop/shop.selectors';
+import { createStructuredSelector } from 'reselect';
 import CustomButton from '../custom-button/custom-button.component';
 import RadioButton from '../radio-button/radio-button';
 import './quick-info.css';
 
-const QuickInfo = ({ toggleModal, item, addItem }) => {
+const QuickInfo = ({ toggleModal, item, addItem, infoRoute, history }) => {
   const [currentItem, setItem] = useState(item);
 
   const handleSubmit = async (event) => {
@@ -17,6 +20,11 @@ const QuickInfo = ({ toggleModal, item, addItem }) => {
   const handleChange = (event) => {
     const { name, value } = event.target;
     setItem({ ...currentItem, [name]: value });
+  };
+
+  const gotoInfo = (route) => {
+    toggleModal();
+    history.push(infoRoute);
   };
 
   return (
@@ -42,7 +50,11 @@ const QuickInfo = ({ toggleModal, item, addItem }) => {
               ADD TO CART
             </CustomButton>
           </form>
-          <CustomButton type='submit' className='modal-buttom'>
+          <CustomButton
+            type='submit'
+            className='modal-buttom'
+            onClick={gotoInfo}
+          >
             MORE INFO
           </CustomButton>
         </div>
@@ -55,4 +67,10 @@ const mapDispatchToProps = (dispatch) => ({
   addItem: (item) => dispatch(addItem(item)),
 });
 
-export default connect(null, mapDispatchToProps)(QuickInfo);
+const mapStateToProps = createStructuredSelector({
+  infoRoute: selectCurrentRoute,
+});
+
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(QuickInfo),
+);

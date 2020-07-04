@@ -1,0 +1,13 @@
+.content-header::after {
+  content: '';
+  display: block;
+  height: 1px;
+  width: 5em;
+  background: #bbb;
+  margin: 0.25em;
+}
+
+.content-header {
+  font-size: 3rem;
+  text-align: left;
+}
