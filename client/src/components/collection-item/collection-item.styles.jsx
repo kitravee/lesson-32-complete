@@ -39,6 +39,21 @@ export const QuickButton = styled(CustomButton)`
   width: 80%;
   opacity: 0.7;
   position: absolute;
+  top: 195px;
+  display: none;
+
+  @media screen and (max-width: 800px) {
+    display: block;
+    opacity: 0.9;
+    min-width: unset;
+    padding: 0 10px;
+  }
+`;
+
+export const MoreInfoButton = styled(CustomButton)`
+  width: 80%;
+  opacity: 0.7;
+  position: absolute;
   top: 255px;
   display: none;
 

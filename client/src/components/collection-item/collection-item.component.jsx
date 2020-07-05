@@ -12,6 +12,7 @@ import {
   BackgroundImage,
   NameContainer,
   PriceContainer,
+  MoreInfoButton,
 } from './collection-item.styles';
 
 const CollectionItem = ({
@@ -29,20 +30,26 @@ const CollectionItem = ({
 
   const handleClick = () => {
     toggleModal(item);
-    console.log(route);
     setCurrentRoute(route);
+  };
+
+  const handleInfo = (route) => {
+    history.push(route);
   };
   return (
     <CollectionItemContainer>
       <BackgroundImage
         className='image'
         imageUrl={imageUrl}
-        onClick={() => history.push(route)}
+        onClick={() => handleInfo(route)}
       />
       <CollectionFooterContainer>
         <NameContainer>{name}</NameContainer>
         <PriceContainer>{price}</PriceContainer>
       </CollectionFooterContainer>
+      <MoreInfoButton onClick={() => handleInfo(route)} inverted>
+        More Infomation
+      </MoreInfoButton>
       <QuickButton onClick={handleClick} inverted>
         Quick Add
       </QuickButton>
