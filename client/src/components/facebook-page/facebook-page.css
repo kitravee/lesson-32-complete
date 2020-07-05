@@ -2,6 +2,7 @@
   position: absolute;
 
   left: 50%;
+  padding-top: 50px;
   /* bring your own prefixes */
   transform: translateX(-50%);
 }
