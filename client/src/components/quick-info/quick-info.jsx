@@ -45,7 +45,7 @@ const QuickInfo = ({ toggleModal, item, addItem, infoRoute, history }) => {
           <form onSubmit={handleSubmit}>
             <p>Plase select your size</p>
             <RadioButton handleChange={handleChange} required></RadioButton>
-            <p>Size description</p>
+            <p>Size description: S36 M38 L40 XL42</p>
             <CustomButton type='submit' className='modal-center' inverted>
               ADD TO CART
             </CustomButton>
