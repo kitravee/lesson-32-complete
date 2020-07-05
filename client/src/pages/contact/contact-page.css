@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css?family=Unica+One|Vollkorn');
+
+.content-h1,
+.content-h2 {
+  text-transform: uppercase;
+  font-family: 'Vollkorn';
+  text-align: center;
+  line-height: 0.9;
+  color: #333;
+}
+
+.content-h3,
+.content-h4,
+.content-h5 {
+  text-align: center;
+  line-height: 0.9;
+  color: #333;
+}
+
+blockquote {
+  font-size: 2rem;
+  color: #000;
+}
+
+blockquote::before {
+  content: open-quote;
+}
+
+blockquote::after {
+  content: close-quote;
+}
+
+.tooltip {
+  color: #c31;
+  text-decoration: underline;
+}
+
+a[data-tool-tip] {
+  position: relative;
+}
+
+a[data-tool-tip]::after {
+  content: attr(data-tool-tip);
+  display: block;
+  position: absolute;
+  background-color: #777;
+  padding: 1em 3em;
+  color: white;
+  border-radius: 5px;
+  font-size: 0.8em;
+  /* bottom: 10px; */
+  left: -80px;
+  white-space: nowrap;
+  transform: scale(0);
+  transition: transform ease-out 150ms, bottom ease-out 150ms;
+}
+
+a[data-tool-tip]:hover::after {
+  transform: scale(1);
+  top: 100%;
+}

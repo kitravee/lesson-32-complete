@@ -1,0 +1,11 @@
+.window-box {
+  position: absolute;
+
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translateX(-50%);
+}
+
+.content-center {
+  text-align: center;
+}
