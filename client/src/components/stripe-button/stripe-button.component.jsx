@@ -1,7 +1,7 @@
 import React from 'react';
 import StripeCheckout from 'react-stripe-checkout';
 import axios from 'axios';
-import logo from '../../assets/logo.png';
+import logo from '../../assets/stripe.svg';
 
 const StripeCheckoutButton = ({ price }) => {
   const priceForStripe = price * 100;
