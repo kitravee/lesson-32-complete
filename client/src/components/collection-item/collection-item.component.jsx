@@ -48,7 +48,7 @@ const CollectionItem = ({
         <PriceContainer>{price}</PriceContainer>
       </CollectionFooterContainer>
       <MoreInfoButton onClick={() => handleInfo(route)} inverted>
-        More Infomation
+        Infomation
       </MoreInfoButton>
       <QuickButton onClick={handleClick} inverted>
         Quick Add
