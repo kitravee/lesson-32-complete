@@ -1,5 +1,6 @@
-#Logo
-https://www.ucraft.com/free-logo-maker
+# Added Information
+Logo was designed by: https://www.ucraft.com/free-logo-maker
+Public: https://kitshop-kitravee.herokuapp.com/
 
 # Lesson-32-complete
 Let's make our code mobile responsive! We wrote some media queries into the appropriate css files and now we have mobile friendly code!
