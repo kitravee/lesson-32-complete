@@ -34,7 +34,8 @@ export function* getSnapshotFromUserAuth(userAuth, additionalData) {
 
 export function* signInWithGoogle() {
   try {
-    //signInWithPopup -> signInWithRedirect (because some browser is not support sign in withPopUp, My Ipad may not support (let test it))
+    //signInWithPopup -> signInWithRedirect (Because some browser is not support sign in withPopUp, My Ipad too, when open progressive mode (Add to home screen))
+    //signInWithRedirect can fix this problem
     const { user } = yield auth.signInWithRedirect(googleProvider);
     yield getSnapshotFromUserAuth(user);
   } catch (error) {
