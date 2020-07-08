@@ -1,5 +1,5 @@
 # Added Information
-Logo was designed by: https://www.ucraft.com/free-logo-maker
+Logo was designed by: https://www.ucraft.com/free-logo-maker\
 Public: https://kitshop-kitravee.herokuapp.com/
 
 # Lesson-32-complete
